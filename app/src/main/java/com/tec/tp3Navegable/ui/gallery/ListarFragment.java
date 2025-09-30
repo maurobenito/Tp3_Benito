@@ -1,7 +1,5 @@
 package com.tec.tp3Navegable.ui.gallery;
 
-import static com.tec.tp3Navegable.MainActivity.productos;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.tec.tp3Navegable.databinding.FragmentListarBinding;
 
 import java.util.ArrayList;
+
+import Adapter.ProductoAdapter;
 
 public class ListarFragment extends Fragment {
 

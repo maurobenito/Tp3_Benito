@@ -1,4 +1,4 @@
-package com.tec.tp3Navegable.ui.gallery;
+package Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
