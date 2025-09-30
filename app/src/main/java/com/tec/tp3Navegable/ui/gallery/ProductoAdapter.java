@@ -57,6 +57,8 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         //retornamos el tamaño de la lista de productos
     }
 
+    public void setProductos(List<Producto> lista) { this.listaProductos = lista; }
+
 
     //Clase interna HOLDER que represente en java los elementos del item
     public class ViewHolderProducto extends RecyclerView.ViewHolder {

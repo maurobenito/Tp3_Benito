@@ -9,24 +9,44 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tec.tp3Navegable.databinding.FragmentListarBinding;
 
+import java.util.ArrayList;
+
 public class ListarFragment extends Fragment {
 
     private FragmentListarBinding binding;
+    private ListarViewModel viewModel;
+    private ProductoAdapter adapter;
 
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentListarBinding.inflate(inflater, container, false);
 
-        ProductoAdapter adapter = new ProductoAdapter(productos, getContext(), getLayoutInflater());
+
+        viewModel = new ViewModelProvider(this).get(ListarViewModel.class);
+
+
+        adapter = new ProductoAdapter(new ArrayList<>(), getContext(), getLayoutInflater());
         GridLayoutManager glm = new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false);
         binding.rvLista.setLayoutManager(glm);
         binding.rvLista.setAdapter(adapter);
+
+
+        viewModel.getLista().observe(getViewLifecycleOwner(), productos -> {
+            adapter.setProductos(productos);
+            adapter.notifyDataSetChanged();
+        });
+
+
+        viewModel.cargarLista();
+
         return binding.getRoot();
     }
 
