@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class ListarFragment extends Fragment {
 
     private FragmentListarBinding binding;
-    private ListarViewModel viewModel;
+    private ListarViewModel vm;
     private ProductoAdapter adapter;
 
     @Override
@@ -30,7 +30,7 @@ public class ListarFragment extends Fragment {
         binding = FragmentListarBinding.inflate(inflater, container, false);
 
 
-        viewModel = new ViewModelProvider(this).get(ListarViewModel.class);
+        vm = new ViewModelProvider(this).get(ListarViewModel.class);
 
 
         adapter = new ProductoAdapter(new ArrayList<>(), getContext(), getLayoutInflater());
@@ -39,13 +39,13 @@ public class ListarFragment extends Fragment {
         binding.rvLista.setAdapter(adapter);
 
 
-        viewModel.getLista().observe(getViewLifecycleOwner(), productos -> {
+        vm.getLista().observe(getViewLifecycleOwner(), productos -> {
             adapter.setProductos(productos);
             adapter.notifyDataSetChanged();
         });
 
 
-        viewModel.cargarLista();
+        vm.cargarLista();
 
         return binding.getRoot();
     }
