@@ -29,12 +29,12 @@ public class CargarFragment extends Fragment {
 
         mv.getmMensaje().observe(getViewLifecycleOwner(), mensaje -> {
             Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show();
-            mv.getLimpiarCampos().observe(getViewLifecycleOwner(), unused -> {
-                binding.etCodigo.setText("");
-                binding.etDescripcion.setText("");
-                binding.etPrecio.setText("");
-            });
+        });
 
+        mv.getLimpiarCampos().observe(getViewLifecycleOwner(), unused -> {
+            binding.etCodigo.setText("");
+            binding.etDescripcion.setText("");
+            binding.etPrecio.setText("");
         });
 
         binding.btAceptar.setOnClickListener(new View.OnClickListener() {
