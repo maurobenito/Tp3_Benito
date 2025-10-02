@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.tec.tp3Navegable.databinding.FragmentCargarBinding;
@@ -28,13 +29,16 @@ public class CargarFragment extends Fragment {
 
 
         mv.getmMensaje().observe(getViewLifecycleOwner(), mensaje -> {
-            Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show();
-        });
+            Toast.makeText(getContext(), mensaje, Toast.LENGTH_LONG).show();
 
-        mv.getLimpiarCampos().observe(getViewLifecycleOwner(), unused -> {
-            binding.etCodigo.setText("");
-            binding.etDescripcion.setText("");
-            binding.etPrecio.setText("");
+        });
+        mv.getLimpiarCampos().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                binding.etCodigo.setText("");
+                binding.etDescripcion.setText("");
+                binding.etPrecio.setText("");
+            }
         });
 
         binding.btAceptar.setOnClickListener(new View.OnClickListener() {
