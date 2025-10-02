@@ -2,18 +2,23 @@ package com.tec.tp3Navegable.ui.home;
 
 import static com.tec.tp3Navegable.MainActivity.productos;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.tec.tp3Navegable.modelo.Producto;
 
-public class CargarViewModel extends ViewModel {
+public class CargarViewModel extends AndroidViewModel {
 
     private  MutableLiveData<String> mMensaje;
+    private MutableLiveData<Boolean> limpiarCampos;
 
-    public CargarViewModel() {
-
+    public CargarViewModel(@NonNull Application application) {
+        super(application);
     }
 
     public LiveData<String> getmMensaje() {
@@ -24,8 +29,14 @@ public class CargarViewModel extends ViewModel {
             return mMensaje;
 
     }
-    private final MutableLiveData<Boolean> limpiarCampos = new MutableLiveData<>();
+
     public LiveData<Boolean> getLimpiarCampos() {
+        if (limpiarCampos==null) {
+            limpiarCampos=new MutableLiveData<>();
+
+        }
+
+
         return limpiarCampos;
     }
 
